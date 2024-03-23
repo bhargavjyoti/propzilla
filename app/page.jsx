@@ -1,6 +1,12 @@
+import Hero from "@/components/Hero"
+import InfoBoxes from "@/components/InfoBoxes"
+
 const page = () => {
   return (
-    <div className="text-3xl text-red-600 text-center">Home Page</div>
+    <>
+      <Hero />
+      <InfoBoxes />
+    </>
   )
 }
 
