@@ -35,12 +35,73 @@ const PropertyAddForm = () => {
         setMounted(true)
     }, [])
 
-    const handleChange = () => {}
-    const handleAmenitiesChange = () => {}
-    const handleImageChange = () => {}
+    // Handle form field changes and nested object changes
+    const handleChange = (e) => {
+      const { name, value } = e.target
+      // if name includes . then it is nested object
+      if(name.includes(".")) {
+        const [outerKey, innerKey] = name.split(".")
+        setFields((prevFields) => ({
+          ...prevFields,
+          [outerKey]: {
+            ...prevFields[outerKey],
+            [innerKey]: value
+          }
+        }))
+        // else it is a regular field
+      } else {
+        setFields((prevFields) => ({
+          ...prevFields,
+          [name]: value
+        }))
+      }
+
+    }
+
+    // 
+    const handleAmenitiesChange = (e) => {
+      const { value, checked } = e.target;
+
+      // Clone the current array
+      const updatedAmenites = [...fields.amenities];
+
+      if (checked) {
+        // Add value to array
+        updatedAmenites.push(value);
+      } else {
+        // Remove value from array
+        const index = updatedAmenites.indexOf(value);
+
+        if (index !== -1) {
+          updatedAmenites.splice(index, 1);
+        }
+      }
+
+      // Update state with updated array
+      setFields((prevFields) => ({
+        ...prevFields,
+        amenities: updatedAmenites,
+      }));
+    }
+    const handleImageChange = (e) => {
+      const { files } = e.target;
+
+      // Clone the current array
+      const updatedImages = [...fields.images];
+
+      // Add new files to array
+      for(const file of files) {
+        updatedImages.push(file);
+      }
+      // Update state with updated array
+      setFields((prevFields) => ({
+        ...prevFields,
+        images: updatedImages,
+      }));
+    }
 
   return mounted &&
-    <form>
+    <form action="/api/properties" method="POST" encType="multipart/form-data">
             <h2 className="text-3xl text-center font-semibold mb-6">
               Add Property
             </h2>
@@ -432,7 +493,7 @@ const PropertyAddForm = () => {
               <input
                 type="text"
                 id="seller_name"
-                name="seller_info.name."
+                name="seller_info.name"
                 className="border rounded w-full py-2 px-3"
                 placeholder="Name"
                 value={fields.seller_info.name}
@@ -485,6 +546,7 @@ const PropertyAddForm = () => {
                 accept="image/*"
                 multiple
                 onChange={handleImageChange}
+                required
               />
             </div>
 
