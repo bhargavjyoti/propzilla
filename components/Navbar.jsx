@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 import Image from 'next/image';
 import Link from 'next/link';
@@ -20,6 +21,8 @@ const Navbar = () => {
 
   const pathname = usePathname();
 
+  const router = useRouter();
+
   useEffect(() => {
     const setAuthProviders = async () => {
       const res = await getProviders()
@@ -28,6 +31,10 @@ const Navbar = () => {
 
     setAuthProviders()
   }, [])
+
+  if(!session) {
+    router.push("/")
+  }
   
 
   return (
@@ -199,6 +206,7 @@ const Navbar = () => {
                             onClick={() => {
                               setIsProfileMenuOpen(false)
                               signOut()
+                              
                             }}
                             className='block px-4 py-2 text-sm text-gray-700'
                             role='menuitem'
