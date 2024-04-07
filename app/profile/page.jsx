@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 import profileDefault from "@/assets/images/profile.png";
 import { useState, useEffect } from "react";
-import loading from "@/assets/loading-spinner.svg";
+import loadingSpinner from "@/assets/loading-spinner.svg";
 
 const ProfilePage = () => {
   const {data: session} = useSession()
@@ -97,7 +97,7 @@ const ProfilePage = () => {
                 <p>No properties found</p>
               )}
 
-              {loading ? (<Image src={loading} alt="Loading..." width={200} height={200} />) : (
+              {loading ? (<Image src={loadingSpinner} alt="Loading..." width={200} height={200} />) : (
                 properties.map((property) => (
                   <div key={property._id} className="mb-10">
                       <Link href={`/properties/${property._id}`}>
