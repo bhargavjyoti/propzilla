@@ -6,6 +6,7 @@ import { useSession } from "next-auth/react";
 import profileDefault from "@/assets/images/profile.png";
 import { useState, useEffect } from "react";
 import loadingSpinner from "@/assets/loading-spinner.svg";
+import { toast } from "react-toastify";
 
 const ProfilePage = () => {
   const {data: session} = useSession()
@@ -28,7 +29,7 @@ const ProfilePage = () => {
           setProperties(data)
         }
       } catch (error) {
-          console.log(error)
+          toast.error("Failed to fetch user properties")
       } finally {
         setLoading(false)
       }
@@ -59,13 +60,13 @@ const ProfilePage = () => {
         setProperties(updatedProperties)
 
         // Show success message to user
-        alert("Property deleted successfully")
+        toast.success("Property deleted successfully")
       } else {
-        alert("Failed to delete property")
+        toast.error("Failed to delete property")
       }
     } catch (error) {
       console.log(error)
-      alert("Failed to delete property")
+      toast.error("Failed to delete property")
     }
 
 
