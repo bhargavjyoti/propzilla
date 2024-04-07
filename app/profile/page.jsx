@@ -4,13 +4,40 @@ import Image from "next/image";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import profileDefault from "@/assets/images/profile.png";
-
+import { useState, useEffect } from "react";
 
 const ProfilePage = () => {
   const {data: session} = useSession()
   const profileImage = session?.user?.image
   const profileName = session?.user?.name
   const profileEmail = session?.user?.email
+
+  const [properties, setProperties] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchUserProperties = async (userId) => {
+      if(!userId) return
+
+      try {
+        const res = await fetch(`/api/properties/user/${userId}`)
+
+        if(res.status === 200) {
+          const data = await res.json()
+          setProperties(data)
+        }
+      } catch (error) {
+          console.log(error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    // Fetch user properties when session is available
+    if(session?.user?.id) {
+      fetchUserProperties(session.user.id)
+    }
+  }, [session])
 
   return (
     <section className="bg-blue-50">
