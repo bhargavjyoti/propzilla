@@ -3,7 +3,7 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 
 const PropertySearchForm = () => {
-    const [loacation, setLocation] = useState("")
+    const [location, setLocation] = useState("")
     const [propertyType, setPropertyType] = useState("All")
 
     const router = useRouter()
@@ -11,10 +11,10 @@ const PropertySearchForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         
-        if(loacation === "" || propertyType === "All") {
+        if(location === "" || propertyType === "All") {
             router.push("/properties")
         } else {
-            const query = `?location=${loacation}&propertyType=${propertyType}`
+            const query = `?location=${location}&propertyType=${propertyType}`
 
             router.push(`/properties/search-results${query}`)
         }
@@ -31,7 +31,7 @@ const PropertySearchForm = () => {
                 id="location"
                 placeholder="Enter Location (City, State, Zip, etc"
                 className="w-full px-4 py-3 rounded-lg bg-white text-gray-800 focus:outline-none focus:ring focus:ring-blue-500"
-                value={loacation}
+                value={location}
                 onChange={ (e) => setLocation(e.target.value) }
                 />
             </div>
