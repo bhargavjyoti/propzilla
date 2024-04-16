@@ -1,36 +1,34 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# PropZilla: A Modern Property Rental Platform
 
-## Getting Started
+**Vercel:** [PropZilla](https://propzilla.vercel.app/)
 
-First, run the development server:
+PropZilla is a user-friendly property rental platform built with cutting-edge technologies: Next.js 14 and MongoDB. It streamlines the rental process for both landlords and tenants, offering a secure, efficient, and convenient experience.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Key Features:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. **Secure User Authentication:** PropZilla prioritizes security with a user authentication system, ensuring only registered users can list properties or contact each other.
+   
+2. **Seamless Property Search:** Tenants can effortlessly find their ideal rental property with PropZilla's advanced search functionalities. Filter listings based on various criteria like location, property type, rent price range, amenities, and pet-friendliness.
+   
+3. **Effortless Property Listing Management:** Landlords can easily add new properties to PropZilla, complete with detailed descriptions, high-quality photos, and clear specifications to showcase their rental in the best light.
+   
+4. **Comprehensive Property Management:** Update property details, edit descriptions, and manage the availability status of your rentals with ease.
+   
+5. **Direct Communication Channel:** PropZilla facilitates seamless communication between tenants and landlords. Once a tenant expresses interest, a secure platform for direct messaging allows them to discuss the property and schedule viewings.
+   
+6. **Bookmark Feature:** Never lose track of your dream rental again! PropZilla allows tenants to bookmark interesting properties for convenient access and review later.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Technologies:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **Frontend:** Next.js 14
+  
+- **Backend:** Node.js (inferred from Next.js)
+  
+- **Database:** MongoDB
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+## Deployment
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This project is currently deployed to Vercel at: [PropZilla](https://propzilla.vercel.app/)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
