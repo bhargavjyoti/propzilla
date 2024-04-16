@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import PropertyCard from "./PropertyCard";
 import LoadingSpinner from "@/assets/loading-spinner.svg";
 import Image from "next/image";
+import Pagination from "./Pagination";
 
 const Properties = () => {
     const [properties, setProperties] = useState([]);
@@ -33,22 +34,36 @@ const Properties = () => {
         };
 
         fetchProperties();
-    }, []);
+    }, [page, pageSize]);
+
+    const handlePageChange = (newPage) => {
+        setPage(newPage);
+    };
 
     return loading ? (
         <Image src={LoadingSpinner} width={200} height={200} alt="Loading..." />
     ) : (
         <section className="px-4 py-6">
-            <div className="container-xl lg:container m-auto px-4 py-6"></div>
-            {properties.length === 0 ? (
-                <p>No properties found</p>
-            ) : (
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {properties.map((property) => (
-                        <PropertyCard key={property._id} property={property} />
-                    ))}
-                </div>
-            )}
+            <div className="container-xl lg:container m-auto px-4 py-6">
+                {properties.length === 0 ? (
+                    <p>No properties found</p>
+                ) : (
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        {properties.map((property) => (
+                            <PropertyCard
+                                key={property._id}
+                                property={property}
+                            />
+                        ))}
+                    </div>
+                )}
+                <Pagination
+                    page={page}
+                    totalItems={totalItems}
+                    pageSize={pageSize}
+                    onPageChange={handlePageChange}
+                />
+            </div>
         </section>
     );
 };
